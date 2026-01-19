@@ -1,0 +1,20 @@
+
+{
+  "name": "e-commerce-ts-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "dev:ts": "tsc -w",
+      "dev:sass": "sass --watch scss/main.scss:dist/css/main.css",
+      "start": "npm run dev:ts & npm run dev:sass"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "sass": "^1.97.2",
+    "typescript": "^5.9.3"
+  }
+}

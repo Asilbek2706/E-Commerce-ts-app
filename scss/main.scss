@@ -1,0 +1,236 @@
+@use 'sass:color';
+@use './abstracts/variables' as v;
+@use './components/cards';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: v.$font-main;
+  background-color: v.$background-color;
+  color: v.$text-color;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: v.$container-max-width;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  background-color: v.$white;
+  box-shadow: v.$shadow-sm;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: v.$font-weight-bold;
+    color: v.$primary-color;
+  }
+
+  .cart-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: color.adjust(v.$primary-color, $lightness: 45%);
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: transform 0.2s;
+
+    &:hover { transform: scale(1.05); }
+
+    .cart-icon { font-size: 1.2rem; }
+
+    #cart-count {
+      background-color: v.$primary-color;
+      color: v.$white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: v.$font-weight-bold;
+    }
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  padding: 2rem 0;
+
+  .search-box {
+    flex: 1;
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid color.adjust(v.$secondary-color, $lightness: 30%);
+      border-radius: 8px;
+      font-family: inherit;
+      outline: none;
+      &:focus { border-color: v.$primary-color; }
+    }
+  }
+
+  .filter-box select {
+    padding: 0.75rem 1rem;
+    border: 1px solid color.adjust(v.$secondary-color, $lightness: 30%);
+    border-radius: 8px;
+    background: v.$white;
+    cursor: pointer;
+    outline: none;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+
+  .modal-content {
+    background-color: v.$white;
+    width: 95%;
+    max-width: 500px;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: v.$border-radius;
+    box-shadow: v.$shadow-md;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid color.adjust(v.$secondary-color, $lightness: 40%);
+    padding-bottom: 1rem;
+
+    .close-modal {
+      font-size: 2rem;
+      color: v.$secondary-color;
+      line-height: 1;
+      &:hover { color: v.$danger-color; }
+    }
+  }
+}
+
+#cart-items-container {
+  padding: 1rem 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  border-top: 1px solid color.adjust(v.$secondary-color, $lightness: 40%);
+  padding-top: 1.5rem;
+
+  .total-price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-weight: v.$font-weight-bold;
+    margin-bottom: 1.5rem;
+    .price-amount { color: v.$primary-color; }
+  }
+
+  .checkout-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: v.$text-color;
+    color: v.$white;
+    border: none;
+    border-radius: 8px;
+    font-weight: v.$font-weight-bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    &:hover { background-color: #000; }
+  }
+}
+
+.remove-item-btn {
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.2);
+    color: v.$danger-color !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0.75rem 0;
+
+    .logo {
+      font-size: 1.25rem;
+    }
+
+    .cart-status {
+      padding: 6px 12px;
+      font-size: 0.9rem;
+    }
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem 0;
+
+    .search-box input,
+    .filter-box select {
+      width: 100%;
+    }
+  }
+
+  .modal-content {
+    width: 90% !important;
+    margin: 15% auto !important;
+    padding: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .modal-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .modal-footer {
+    .total-price-row {
+      font-size: 1.1rem;
+    }
+
+    .checkout-btn {
+      padding: 0.85rem;
+    }
+  }
+
+  #cart-items-container {
+    max-height: 300px;
+  }
+}
+
+@media (hover: none) {
+  .cart-status:hover {
+    transform: none;
+  }
+
+  .remove-item-btn:hover {
+    transform: none;
+  }
+}

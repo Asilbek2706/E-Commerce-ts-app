@@ -1,0 +1,129 @@
+@use '../abstracts/variables' as v;
+@use 'sass:color';
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.product-card {
+  background: v.$white;
+  border-radius: v.$border-radius;
+  box-shadow: v.$shadow-sm;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform v.$transition-speed v.$transition-ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: v.$shadow-md;
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .product-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: v.$text-color;
+      font-weight: v.$font-weight-bold;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: v.$secondary-color;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+      line-height: 1.4;
+    }
+
+    .price {
+      font-size: 1.3rem;
+      font-weight: v.$font-weight-bold;
+      color: v.$primary-color;
+      margin-bottom: 1rem;
+    }
+
+    .add-btn {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: v.$primary-color;
+      color: v.$white;
+      border: none;
+      border-radius: 8px;
+      font-weight: v.$font-weight-medium;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover {
+        background-color: color.adjust(v.$primary-color, $lightness: -10%);
+      }
+
+      &:disabled {
+        background-color: v.$success-color;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
+
+  .product-card {
+    img {
+      height: 180px;
+    }
+
+    .product-info {
+      padding: 1.25rem;
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      .price {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .product-card {
+    &:hover {
+      transform: none;
+    }
+
+    img {
+      height: 220px;
+    }
+
+    .product-info {
+      .add-btn {
+        padding: 1rem;
+      }
+    }
+  }
+}

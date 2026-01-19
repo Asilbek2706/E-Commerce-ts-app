@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TS E-Commerce Store</title>
+    <link rel="stylesheet" href="./dist/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-content">
+        <h1 class="logo">SmartShop</h1>
+        <div class="cart-status" id="cart-btn" style="cursor: pointer;">
+            <span class="cart-icon">🛒</span>
+            <span id="cart-count">0</span>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <section class="controls">
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search products...">
+        </div>
+        <div class="filter-box">
+            <select id="category-filter">
+                <option value="All">All Categories</option>
+                <option value="Laptops">Laptops</option>
+                <option value="Phones">Phones</option>
+                <option value="Audio">Audio</option>
+            </select>
+        </div>
+    </section>
+
+    <section id="product-list" class="product-grid">
+    </section>
+</main>
+
+<div id="cart-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Your Shopping Cart</h2>
+            <span class="close-modal" style="cursor: pointer;">&times;</span>
+        </div>
+
+        <div id="cart-items-container">
+            <p style="text-align: center; color: #64748b; padding: 20px;">Your cart is empty.</p>
+        </div>
+
+        <div class="modal-footer">
+            <div class="total-price-row">
+                <strong>Total:</strong>
+                <span class="price-amount">$<span id="cart-total-price">0</span></span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="./dist/app.js"></script>
+</body>
+</html>
