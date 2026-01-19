@@ -5,18 +5,6 @@
 out/
 node_modules/
 
-dist/
-dist/css/
-dist/app.js
-dist/components/
-dist/models/
-dist/utils/
-
-.sass-cache/
-*.css.map
-*.sass.map
-.scss-cache/
-
 .DS_Store
 Thumbs.db
 
